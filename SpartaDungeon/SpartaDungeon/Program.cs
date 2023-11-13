@@ -112,6 +112,8 @@
             Console.WriteLine("[아이템 목록]");
             inventory.ShowEquipInfo();
             Console.WriteLine("장착(해제)하실 아이템 번호를 입력해주세요:  ");
+            int itemIndex = Convert.ToInt32( Console.ReadLine());
+            inventory.ToggleEquip(itemIndex);
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -236,6 +238,22 @@
                     Console.WriteLine($"{equipValue}{i + 1}.{items[i].iName}, 가격: {items[i].iPrice}gold, 공격력: {items[i].iAtk}, 방어력: {items[i].iDef}, " +
                                       $"효과: {items[i].iEffect}, 아이템 설명: {items[i].iDescription}");
                 }
+            }
+        }
+
+        public void ToggleEquip(int itemIndex)
+        {
+            if (itemIndex >=1 && itemIndex <= items.Count)
+            {
+                Item currentItem = items[itemIndex - 1];
+                currentItem.isEquipped = !currentItem.isEquipped;
+                items[itemIndex - 1] = currentItem;
+
+                Console.WriteLine($"{items[itemIndex - 1].iName}의 장착 상태가 변경되었습니다.");
+            }
+            else
+            {
+                Console.WriteLine("잘못 입력하셨습니다.");
             }
         }
     }
