@@ -20,15 +20,12 @@
             inventory = new Inventory();
             inventory.AddItems("무쇠갑옷", 300, 0, 5, "", "무쇠로 만들어져 튼튼한 갑옷입니다.");
             inventory.AddItems("낡은 검", 400, 2, 0, "", "쉽게 볼 수 있는 낡은 검 입니다.");
-            
-            
-
         }
 
+        //기본 게임창을 보여줄 메소드
         static void DisplayGameIntro()
         {
             Console.Clear();
-
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 전전으로 들어가기 전 활동을 할 수 있습니다.");
             Console.WriteLine();
@@ -50,6 +47,7 @@
             }
         }
 
+        // 내정보를 보여줄 메소드
         static void DisplayMyInfo()
         {
             Console.Clear();
@@ -75,6 +73,7 @@
             }
         }
 
+        // 인벤토리 창을 보여줄 메소드
         static void DisplayInventory()
         {
             Console.Clear();
@@ -103,16 +102,16 @@
 
         }
 
-        //장착관리
+        //장착관리 메소드
         static void MyEquipment()
         {
             Console.Clear();
-
             Console.WriteLine("인벤토리 - 장착 관리");
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.");
             Console.WriteLine();
             Console.WriteLine("[아이템 목록]");
             inventory.ShowEquipInfo();
+            Console.WriteLine("장착(해제)하실 아이템 번호를 입력해주세요:  ");
             Console.WriteLine();
             Console.WriteLine("0. 나가기");
             Console.WriteLine("원하시는 행동을 입력해주세요.");
@@ -128,6 +127,7 @@
 
         }
 
+        // 숫자를 입력했을때에 관한 메소드
         static int CheckValidInput(int min, int max)
         {
             while (true)
@@ -146,7 +146,7 @@
         }
     }
 
-
+    // 캐릭터 정보에 관한 클래스
     public class Character
     {
         public string Name { get; }
@@ -169,6 +169,7 @@
         }
     }
 
+    // 아이템은 여러개 생성될 것이기에 구조체로 만듦.
     public struct Item
     {
         public string iName;
@@ -180,6 +181,7 @@
         public bool isEquipped;
     }
 
+    // 인벤토리에 관한 것들을 관리하는 클래스
     public class Inventory
     {
         private List<Item> items;
@@ -205,7 +207,7 @@
             items.Add(newItem);
         }
 
-
+        //아이템 목록줄 메소드
         public void ShowItemInfo()
         {
             foreach (var item in items)
@@ -215,6 +217,7 @@
             }
         }
 
+        //장착된 아이템 목록을 보여줄 메소드
         public void ShowEquipInfo()
         {
             string equipValue = "";
@@ -233,14 +236,7 @@
                     Console.WriteLine($"{equipValue}{i + 1}.{items[i].iName}, 가격: {items[i].iPrice}gold, 공격력: {items[i].iAtk}, 방어력: {items[i].iDef}, " +
                                       $"효과: {items[i].iEffect}, 아이템 설명: {items[i].iDescription}");
                 }
-                
-               
             }
-
         }
-
-        
     }
-
-
 }
